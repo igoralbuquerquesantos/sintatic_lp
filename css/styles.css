@@ -1,0 +1,922 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+    background: #fff;
+}
+
+/* Header Pill Shaped */
+header {
+    position: fixed;
+    width: 800px;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    z-index: 1000;
+    padding: 16px 40px;
+    border-radius: 50px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 
+                0 2px 8px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    border: 2px solid #000000;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: grid;
+}
+
+header:hover {
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15), 
+                0 4px 12px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    transform: translateX(-50%) translateY(-2px);
+}
+
+nav {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 0;
+}
+
+.nav-left {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.nav-right {
+    display: flex;
+    gap: 35px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.nav-left a, .nav-right a {
+    text-decoration: none;
+    color: #1a1a1a;
+    font-size: 15px;
+    font-weight: 500;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.nav-left a:hover, .nav-right a:hover {
+    color: #000;
+    font-weight: 600;
+}
+
+.nav-left a::after, .nav-right a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #FF6B00, #FFD700);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-left a:hover::after, .nav-right a:hover::after {
+    width: 100%;
+}
+
+.logo-nav {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo-nav:hover {
+    transform: rotate(360deg) scale(1.1);
+}
+
+.cta-button {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    color: #000;
+    padding: 12px 28px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    border: none;
+    box-shadow: 0 4px 16px rgba(255, 165, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s;
+}
+
+.cta-button:hover::before {
+    left: 100%;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(255, 165, 0, 0.4);
+}
+
+/* Hero Section - Clean White Background */
+.hero {
+    margin-top: 40px;
+    position: relative;
+    background: #fff;
+    min-height: 90vh;
+    padding: 80px 0 0 0;
+    overflow: visible;
+}
+
+/* Gradient Elements Positioned */
+.gradient-top-left {
+    position: absolute;
+    top: -100px;
+    left: -150px;
+    width: 600px;
+    height: 600px;
+    background: url('/components/img/gradientecroma.png') no-repeat center;
+    background-size: cover;
+    opacity: 0.8;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.gradient-bottom-right {
+    position: absolute;
+    bottom: -50px;
+    right: -100px;
+    width: 800px;
+    height: 800px;
+    background: url('/components/img/gradientecroma.png') no-repeat center;
+    background-size: cover;
+    transform: rotate(180deg);
+    opacity: 0.8;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hero-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px 0 80px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-text h2 {
+    font-size: 15px;
+    color: #000000;
+    margin-bottom: 20px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.hero-text h1 {
+    font-size: 58px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 40px;
+    color: #000;
+    letter-spacing: -1px;
+}
+
+.hero-features {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.feature-item {
+    display: flex;
+    gap: 16px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #333;
+}
+
+.feature-item .diamond {
+    font-size: 22px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    background: linear-gradient(135deg, #FF6B00, #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.feature-item strong {
+    font-weight: 700;
+    color: #000;
+}
+
+.hero-tagline {
+    margin-top: 50px;
+    font-size: 22px;
+    font-weight: 800;
+    color: #000;
+    letter-spacing: -0.5px;
+}
+
+.hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #fff;
+    padding: 10px 32px;
+    border-radius: 30px;
+    border: 2px solid #000;
+    text-decoration: none;
+    color: #000;
+    font-weight: 700;
+    font-size: 15px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.hero-cta:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    background: #000;
+    color: #fff;
+}
+
+.social-icons {
+    margin-top: 30px;
+    display: flex;
+    gap: 16px;
+}
+
+.social-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #000;
+    font-size: 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.social-icon:hover {
+    transform: translateY(-4px) scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    background: #000;
+    color: #fff;
+}
+
+.hero-image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.robot-container {
+    width: 100%;
+    max-width: 1000px;
+    position: relative;
+}
+
+.android {
+  content: url('/components/img/androidnobg1.png');
+  transition: none;
+}
+
+/* animação de ida (olhando pro lado e pra cima) */
+@keyframes androidSequenceForward {
+  0%   { content: url('/components/img/androidnobg1.png'); }
+  50%  { content: url('/components/img/androidnobg2.png'); }
+  100% { content: url('/components/img/androidnobg3.png'); }
+}
+
+/* animação de volta (retornando à posição inicial) */
+@keyframes androidSequenceReverse {
+  0%   { content: url('/components/img/androidnobg3.png'); }
+  50%  { content: url('/components/img/androidnobg2.png'); }
+  100% { content: url('/components/img/androidnobg1.png'); }
+}
+
+/* quando o mouse entra */
+.robot-container:hover .android {
+  animation: androidSequenceForward 0.5s ease-in-out forwards;
+}
+
+/* quando o mouse sai */
+.robot-container .android {
+  animation: androidSequenceReverse 0.5s ease-in-out forwards;
+}
+
+/* truque para garantir que a animação de volta só ocorra ao sair do hover */
+.robot-container:hover .android {
+  animation: androidSequenceForward 0.5s ease-in-out forwards;
+}
+.robot-container:not(:hover) .android {
+  animation: androidSequenceReverse 0.5s ease-in-out forwards;
+}
+
+.robot-container img {
+    width: 650px;
+    height: auto;
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.25));
+    display: block;
+}
+
+/* Solutions Section */
+.solutions {
+    background: #000;
+    color: #fff;
+    padding: 120px 80px;
+    position: relative;
+}
+
+.solutions-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: start;
+}
+
+/*icons start*/
+.solutions-logos {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+}
+
+.solutions-logos img {
+    position: absolute;
+    cursor: pointer;
+    transition: transform 0.2s ease; /* controlar suavidade */
+    will-change: transform;
+}
+
+/* Tamanhos e posições iniciais */
+.logo-openai { width: 120px; z-index: 6; top: 20%; left: 20%; }
+.logo-gemini { width: 130px; z-index: 5; top: 30%; left: 60%; }
+.logo-claude { width: 100px; z-index: 4; top: 80%; left: 70%; }
+.logo-groq { width: 90px; z-index: 3; top: 60%; left: 50%; }
+.logo-meta { width: 80px; z-index: 2; top: 50%; left: 80%; }
+.logo-hf { width: 70px; z-index: 1; top: 70%; left: 30%; }
+/*icons end*/
+
+
+.section-title {
+    font-size: 13px;
+    margin-bottom: 50px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+/*icons end*/
+
+.solutions-text h2 {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 50px;
+    letter-spacing: -1px;
+}
+
+.solution-feature {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 35px;
+    font-size: 16px;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+.solution-feature .diamond {
+    font-size: 22px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Process Section */
+.process {
+    background: #fff;
+    padding: 120px 80px;
+    position: relative;
+}
+
+.process-intro {
+    max-width: 1400px;
+    margin: 0 auto;
+    margin-bottom: 90px;
+}
+
+.process-intro h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #000;
+}
+
+.process-intro h2 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 25px;
+    line-height: 1.4;
+    color: #000;
+    letter-spacing: -0.5px;
+}
+
+.process-description {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #555;
+    max-width: 800px;
+}
+
+.process-steps {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.step {
+    background: linear-gradient(135deg, rgba(255, 107, 0, 0.05) 0%, rgba(255, 215, 0, 0.08) 100%);
+    padding: 50px 40px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 165, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.step::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #FF6B00, #FFD700);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.step:hover::before {
+    transform: scaleX(1);
+}
+
+.step:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    border-color: rgba(255, 165, 0, 0.3);
+}
+
+.step h3 {
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 24px;
+    color: #000;
+    letter-spacing: -0.5px;
+}
+
+.step p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #444;
+}
+
+/* Contact Section */
+.contact {
+    background: #000;
+    color: #fff;
+    padding: 120px 80px;
+    text-align: center;
+}
+
+.contact h2 {
+    font-size: 54px;
+    font-weight: 900;
+    margin-bottom: 35px;
+    letter-spacing: -1px;
+}
+
+.contact-intro {
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 70px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.9;
+}
+
+.contact-methods {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+}
+
+.contact-method {
+    color: inherit;           /* herda a cor do elemento pai */
+    text-decoration: none;    /* remove o sublinhado */
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    text-align: left;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-method:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 174, 0, 0.761);
+    transform: translateX(10px);
+}
+
+.contact-icon {
+    width: 70px;
+    height: 70px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 28px;
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.contact-info h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.contact-info p {
+    font-size: 17px;
+    color: #ccc;
+    font-weight: 500;
+}
+
+/* Footer */
+footer {
+    background: #F8F8F8;
+    padding: 80px 80px 40px;
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 80px;
+    margin-bottom: 50px;
+}
+
+.footer-logo-section {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.footer-logo-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.footer-logo {
+    width: 45px;
+    height: 45px;
+}
+
+.footer-brand {
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+}
+
+.footer-contact p {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.footer-social {
+    display: flex;
+    gap: 12px;
+}
+
+.footer-social-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.footer-social-icon:hover {
+    background: #000;
+    color: #fff;
+    transform: translateY(-4px);
+}
+
+.footer-menu h4,
+.footer-values h4 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 25px;
+    letter-spacing: -0.3px;
+}
+
+.footer-menu ul,
+.footer-values ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.footer-menu a {
+    text-decoration: none;
+    color: #555;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.footer-menu a:hover {
+    color: #000;
+    padding-left: 8px;
+}
+
+.footer-values li {
+    color: #555;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 40px;
+    border-top: 1px solid #ddd;
+    color: #999;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .robot-container {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .solutions-content {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .process-steps {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 12px 24px;
+        top: 20px;
+    }
+
+    nav {
+        gap: 20px;
+    }
+
+    .nav-left, .nav-right {
+        gap: 20px;
+    }
+
+    .hero-text h1 {
+        font-size: 42px;
+    }
+
+    .solutions-text h2 {
+        font-size: 36px;
+    }
+
+    .contact h2 {
+        font-size: 38px;
+    }
+}
+
+/* Ajustes de responsividade para celulares (substituir/atualizar) */
+@media (max-width: 768px) {
+
+    /* HEADER - mantém apenas o logo centralizado */
+    header {
+      width: 90%;
+      top: 15px;
+      padding: 10px 20px;
+    }
+  
+    nav {
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
+  
+    .nav-left,
+    .nav-right {
+      display: none; /* esconde os links */
+    }
+  
+    .logo-nav {
+      margin: 0 auto;
+      width: 50px;
+      height: 50px;
+    }
+  
+    /* HERO - estrutura em coluna: texto -> botões (cta + social) -> robô */
+    .hero-content {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      text-align: center;
+      padding: 0 20px;
+      gap: 20px;
+      align-items: start;
+    }
+  
+    /* Força a ordem: 1 = texto, 2 = ações (cta + social), 3 = robo */
+    .hero-text {
+      order: 1;
+      width: 100%;
+      text-align: center;
+    }
+  
+    /* Agrupa visualmente a CTA e os ícones sociais na mesma linha */
+    .hero-actions { /* pseudo wrapper via CSS (não precisa alterar HTML) */
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+      order: 2;
+      margin-top: 12px;
+      position: relative;
+      z-index: 50;
+    }
+  
+    /* Se o HTML não tiver .hero-actions, aplicamos aos filhos mais prováveis */
+    .hero-text .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      order: 2;
+      margin: 0 auto;
+      z-index: 40;
+    }
+  
+    /* social-icons aparecerá à direita do botão e na frente (instagram à vista) */
+    .hero-text .social-icons,
+    .social-icons {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: 8px;
+      margin-top: 0;
+      order: 2;
+      position: relative;
+      left: 0;
+      top: 6px;
+      z-index: 60; /* maior que a CTA para ficar na frente */
+    }
+  
+    /* garante que o ícone do Instagram fique visível e levemente sobreposto */
+    .social-icon {
+      width: 44px;
+      height: 44px;
+      font-size: 18px;
+      border-width: 2px;
+      transform: translateY(0);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+  
+    /* Robô por último, maior no mobile e centralizado */
+    .hero-image {
+      order: 3;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .robot-container {
+      max-width: 380px; /* um pouco maior para mobile */
+      width: 100%;
+      margin: 6px auto 0;
+      display: flex;
+      justify-content: center;
+    }
+  
+    .robot-container img,
+    .robot-container .android {
+      width: 150%;
+      height: auto;
+      max-width: 800px;
+      z-index: 10;
+    }
+  
+    /* Small tweak: garante animações continuarem funcionais sem cortar */
+    .robot-container img { filter: drop-shadow(0 24px 40px rgba(0,0,0,0.22)); }
+  
+    /* ÍCONES da seção Solutions - reposiciona levemente para evitar corte */
+    .solutions-logos {
+      height: 420px;
+      overflow: visible;
+      left: -18px; /* puxa levemente para a esquerda */
+    }
+  
+    .solutions-logos img {
+      transform: scale(0.8);
+      transition: transform 0.2s ease, left 0.2s ease, top 0.2s ease;
+    }
+  
+    /* reajusta posições absolutas para encaixar melhor no mobile */
+    .logo-openai { top: 12%; left: 8%; }
+    .logo-gemini { top: 18%; left: 50%; transform: translateX(-10%); }
+    .logo-claude { top: 68%; left: 60%; transform: translateX(-6%); }
+    .logo-groq   { top: 52%; left: 34%; }
+    .logo-meta   { top: 38%; left: 80%; }
+    .logo-hf     { top: 74%; left: 12%; }
+  
+    /* Ajustes adicionais para espaçamento geral */
+    .solutions {
+      padding: 80px 20px;
+    }
+  
+    .process, .contact, footer {
+      padding: 80px 20px;
+    }
+  
+    /* Ajuste fino nas fontes (opcional, para melhor leitura no mobile) */
+    .hero-text h1 { font-size: 34px; line-height: 1.1; }
+    .hero-text h2 { font-size: 13px; }
+    .hero-tagline { font-size: 18px; margin-top: 18px; }
+  }
+  
